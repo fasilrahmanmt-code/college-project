@@ -1,0 +1,104 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+
+<head>
+    <title>Scholarship</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            margin: 20px auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        a:hover {
+            color: #1abc9c;
+        }
+
+        .add-btn {
+            display: inline-block;
+            margin: 20px auto;
+            background: #27ae60;
+            color: #fff !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .add-btn:hover {
+            background: #219150;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Scholership List</h2>
+    <table>
+        <tr>
+            <th>Slno</th>
+            <th>Name</th>
+            <th>Details</th>
+            <th>Date</th>
+            <th>Documents</th>
+            <th>Actions</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.Name }}</td>
+            <td>{{ i.Details }}</td>
+            <td>{{ i.Date }}</td>
+            <td><a href="/media/{{ i.Documents }}">View</a> </td>
+            <td>
+                <a href="/myapp/edit_scholership/{{ i.id }}#main">Edit</a> |
+                <a href="/myapp/delete_scholership/{{ i.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div style="text-align: center;">
+        <a href="/myapp/add_scholership/#main" class="add-btn">+ Add Scholarship</a>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+
+<head>
+    <title>Complaint</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8ff;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #004080;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0f6ff;
+        }
+
+        tr:hover {
+            background-color: #dce9ff;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Search inputs inside table header */
+        input[type="date"], input[type="submit"] {
+            margin-top: 5px;
+            padding: 5px 8px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Complaints</h2>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Complaint</th>
+            <th>Date</th>
+            <th>Reply</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{ i.USERID.name }}</td>
+            <td>{{ i.complaint }}</td>
+            <td>{{ i.Date }}</td>
+            {% if i.reply == 'pending' %}
+            <td><a href="/myapp/send_reply/{{ i.id }}/#main">Reply</a></td>
+        {% else %}
+        <td>{{ i.reply }}</td>
+        {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+{% endblock %}

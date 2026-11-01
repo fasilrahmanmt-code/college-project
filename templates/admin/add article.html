@@ -1,0 +1,69 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+
+<head>
+    <title>Add Article</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form input[type="date"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/myapp/add_article_post/" method="post">
+        {% csrf_token %}
+        <label for="article-title">Article Title</label>
+        <input type="text" id="article-title" name="article_title">
+
+        <label for="article-subject">Article Subject</label>
+        <input type="text" id="article-subject" name="article_subject">
+
+        <input type="submit" value="Add">
+    </form>
+</body>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+
+<head>
+    <title>Edit</title>
+    <style>
+        /* ====== Form Container ====== */
+        form {
+            width: 420px;
+            margin: 60px auto;
+            padding: 30px 25px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* ====== Labels ====== */
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+        }
+
+        /* ====== Input Fields ====== */
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        /* ====== Focus Effect ====== */
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+        }
+
+        /* ====== Submit Button ====== */
+        input[type="submit"] {
+            width: 100%;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+
+        /* Optional: Remove default <br> spacing */
+        br {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/myapp/edit_scholership_post/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="{{ data.Name }}">
+
+        <label for="details">Details</label>
+        <input type="text" id="details" name="details" value="{{ data.Details }}">
+
+        <label for="file">File</label>
+        <input type="file" id="file" name="file">
+
+        <input type="submit" value="Update">
+    </form>
+</body>
+
+{% endblock %}
